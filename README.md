@@ -50,7 +50,18 @@ After saving your new post file, you need to rebuild the Jekyll site for the cha
 bundle exec jekyll build
 ```
 
-Your new post will now appear on the main page.
+Your new post will now appear on the main page. The homepage automatically picks up new articles and makes them filterable by their tags.
+
+## Homepage Features
+
+The homepage includes an interactive toolbar for browsing posts:
+
+*   **Search**: Live text search across post titles and excerpts.
+*   **Tag Filters**: Clickable tag pills auto-generated from all article tags. Click a tag to show only matching posts.
+*   **View Toggle**: Switch between a card grid view and a compact list view. Your preference is saved in the browser.
+*   **Sort**: Toggle between newest-first and oldest-first ordering.
+
+Tags defined in a post's front matter (`tags: [AI, ML, Topic]`) are used both for filtering on the homepage and displayed on each post card.
 
 ## Project Structure
 
