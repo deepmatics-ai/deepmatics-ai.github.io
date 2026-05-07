@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: "en-US" }}">
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}?v={{ site.github.build_revision }}">
+    
+    {% include head-custom.html %}
+    {% seo %}
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="header-container">
+            <button class="sidebar-toggle" id="sidebar-toggle">☰</button>
+            <img src="{{ "/assets/about/logo.png" | relative_url }}" alt="Deepmatics Logo" class="about-card-image">
+            <div class="header-left">
+                <div class="container">
+                    <a id="a-title" href="{{ '/' | relative_url }}">
+                        <h1>{{ site.title | default: site.github.repository_name }}</h1>
+                    </a>
+                    <h2>{{ site.description | default: site.github.project_tagline }}</h2>
+                </div>
+            </div>
+            <div class="about-card">
+                <div class="about-card-content">
+                    <a href="{{ "/pages/about.html" | relative_url }}" class="about-card-link">About</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="body-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            
+            <!-- Navigation Section -->
+            <div class="sidebar-section">
+                <h3>Navigation</h3>
+                <ul>
+                    <li><a href="{{ '/' | relative_url }}">🏠 Home</a></li>
+                    <li><a href="{{ '/pages/about.html' | relative_url }}">👤 About</a></li>
+                </ul>
+            </div>
+        
+            <!-- Table of Contents - Only show on blog posts -->
+            {% if page.layout == "post" %}
+            <div class="sidebar-section">
+                <h3>📋 Contents</h3>
+                <div id="toc"></div>
+            </div>
+            {% endif %}
+        
+            <!-- Recent Posts Section - Only show on non-post pages -->
+            {% if page.layout != 'post' %}
+            <div class="sidebar-section">
+                <h3>📚 Recent Posts</h3>
+                <ul class="post-list">
+                    {% assign sorted_articles = site.articles | sort: 'date' | reverse %}
+                    {% for post in sorted_articles limit:5 %}
+                        <li>
+                            <div>
+                                <a href="{{ post.url | relative_url }}"
+                                   {% if page.url == post.url %}class="current-post"{% endif %}>
+                                    {{ post.title }}
+                                </a>
+                                <small>{{ post.date | date: "%b %d, %Y" }}</small>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+
+            <!-- All Posts Section - Only show if more than 5 posts -->
+            {% if site.articles.size > 5 %}
+            <div class="sidebar-section">
+                <h3>🗂️ All Posts</h3>
+                <ul class="all-posts-list post-list">
+                    {% assign sorted_articles = site.articles | sort: 'date' | reverse %}
+                    {% for post in sorted_articles offset:5 %}
+                        <li>
+                            <div>
+                                <a href="{{ post.url | relative_url }}"
+                                   {% if page.url == post.url %}class="current-post"{% endif %}>
+                                    {{ post.title }}
+                                </a>
+                                <small>{{ post.date | date: "%b %d" }}</small>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+
+            <!-- Categories Section - If you have categories -->
+            {% if site.categories.size > 0 %}
+            <div class="sidebar-section">
+                <h3>🏷️ Categories</h3>
+                <ul>
+                    {% for category in site.categories %}
+                        <li>
+                            <a href="{{ '/categories/' | append: category[0] | relative_url }}">
+                                {{ category[0] | capitalize }} ({{ category[1].size }})
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+
+        </aside>
+
+        <!-- Main Content -->
+        <main id="main_content">
+            {{ content }}
+        </main>
+    </div>
+
+    <!-- JavaScript for Table of Contents -->
+    <script>
+        // Generate Table of Contents for blog posts
+        if (document.getElementById('toc')) {
+            const headings = document.querySelectorAll('#main_content h1, #main_content h2, #main_content h3, #main_content h4');
+            const toc = document.getElementById('toc');
+            
+            if (headings.length > 0) {
+                let tocList = document.createElement('ul');
+                let currentList = tocList;
+                let level = 1;
+
+                headings.forEach((heading, index) => {
+                    // Add ID to heading for linking if it doesn't have one
+                    if (!heading.id) {
+                        heading.id = 'heading-' + index;
+                    }
+                    
+                    const headingLevel = parseInt(heading.tagName.substring(1));
+
+                    while (headingLevel > level) {
+                        const newList = document.createElement('ul');
+                        if (currentList.lastChild) {
+                            currentList.lastChild.appendChild(newList);
+                        } else {
+                            const newListItem = document.createElement('li');
+                            newListItem.appendChild(newList);
+                            currentList.appendChild(newListItem);
+                        }
+                        currentList = newList;
+                        level++;
+                    }
+
+                    while (headingLevel < level) {
+                        currentList = currentList.parentElement.closest('ul');
+                        level--;
+                    }
+
+                    // Create list item and link
+                    const listItem = document.createElement('li');
+                    const link = document.createElement('a');
+                    link.href = '#' + heading.id;
+                    link.textContent = heading.textContent;
+                    link.className = 'toc-' + heading.tagName.toLowerCase();
+                    
+                    // Add click event for smooth scrolling
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        document.getElementById(heading.id).scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    });
+                    
+                    listItem.appendChild(link);
+                    currentList.appendChild(listItem);
+                });
+                
+                toc.appendChild(tocList);
+            } else {
+                toc.innerHTML = '<p><em>No headings found in this post</em></p>';
+            }
+        }
+
+        // Highlight current section in TOC while scrolling
+        if (document.getElementById('toc')) {
+            const headings = document.querySelectorAll('#main_content h1, #main_content h2, #main_content h3, #main_content h4');
+            const tocLinks = document.querySelectorAll('#toc a');
+            
+            function highlightCurrentSection() {
+                let current = '';
+                headings.forEach(heading => {
+                    const rect = heading.getBoundingClientRect();
+                    if (rect.top <= 100) {
+                        current = heading.id;
+                    }
+                });
+                
+                tocLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#' + current) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+            
+            window.addEventListener('scroll', highlightCurrentSection);
+        }
+
+        // Sidebar toggle
+        const sidebar = document.getElementById('sidebar');
+        const sidebarToggle = document.getElementById('sidebar-toggle');
+        sidebarToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('open');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+title: Deepmatics!
+description: Exploring AI and a few other interests.
+url: "https://deepmatics-ai.github.io"
+baseurl: "/blog"
+plugins:
+  - jekyll-seo-tag
+
+collections:
+  articles:
+    output: true
+    permalink: /articles/:title/
+
+# Theme-related directories
+layouts_dir: _app/_layouts
+includes_dir: _app/_includes
+sass:
+  sass_dir: _app/_sass
+
+defaults:
+  - scope:
+      path: ""
+      type: "articles"
+    values:
+      layout: "post"
+      author: "Satish Yenumula"
+      image: "/assets/general/featured-image.jpg"
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - Rakefile
+  - README.md
+  - .git
+  - .jekyll-cache
+  - .github
+  - vendor
+  - node_modules

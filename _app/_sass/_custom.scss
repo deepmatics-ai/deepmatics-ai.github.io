@@ -1,0 +1,438 @@
+/* Blog Card Styles */
+.blog-cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.blog-card {
+    flex-basis: calc(33.33% - 40px);
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    margin: 20px;
+}
+
+.blog-card .card-image {
+    width: 100%;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    display: block;
+    object-fit: cover;
+    aspect-ratio: 16 / 9;
+}
+
+.card-content {
+    padding: 15px;
+}
+
+.card-title {
+    margin-top: 0;
+    font-size: 1.2em;
+}
+
+.card-description {
+    font-size: 0.9em;
+    color: #666;
+}
+
+.card-link {
+    display: inline-block;
+    background-color: #0077B5;
+    color: white;
+    padding: 8px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.card-link:hover {
+    background-color: #005582;
+}
+
+/* Header Styles (Custom) */
+header .header-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    box-sizing: border-box;
+}
+
+header .header-left {
+    flex: 1; /* Allow header-left to take up available space */
+}
+
+header .header-left h1 {
+    font-size: 1.8em;
+    margin-bottom: 5px;
+    line-height: 1.2;
+}
+
+header .header-left h2 {
+    font-size: 1em;
+    margin-bottom: 5px;
+    line-height: 1.2;
+}
+
+/* About Card Styles (Header Specific Overrides) */
+header .about-card {
+    display: flex;
+    align-items: center;
+    max-width: 300px; /* Reduced to fit with logo */
+    margin: 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: #2a2a2a;
+    border: 1px solid #444;
+}
+
+header .about-card-content a.about-card-link {
+    font-size: 1em;
+    line-height: 1.2;
+    color: #00d4aa;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+header .about-card-content a.about-card-link:hover {
+    color: #fff;
+}
+
+/* Style the Deepmatics Logo in the Header */
+header .header-container img.about-card-image {
+    width: 80px; /* Adjust size as needed */
+    height: 80px; /* Adjust size as needed */
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+header .about-card-content {
+    flex: 1;
+}
+
+/* Badges Container */
+.badges-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.linkedin-badge {
+    max-width: 400px;
+    width: 100%;
+    height: 245px;
+    border: none;
+    overflow: hidden;
+}
+
+/* GitHub Profile Badge */
+.github-profile-badge {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #2a2a2a;
+    color: #e0e0e0;
+    width: 400px;
+    height: 245px;
+    padding: 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+    font-weight: bold;
+    box-sizing: border-box;
+    border: 1px solid #444;
+}
+
+.github-logo {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 20px;
+}
+
+/* Body Container for Flexbox Layout */
+.body-container {
+    display: flex;
+    align-items: flex-start;
+}
+
+/* Sticky Sidebar Styles */
+.sidebar {
+    width: 280px;
+    position: -webkit-sticky; /* For Safari */
+    position: sticky;
+    top: 20px; /* Adjust this value to set the distance from the top */
+    align-self: flex-start; /* Important for sticky positioning */
+    background: #1a1a1a;
+    color: #e0e0e0;
+    padding: 1.5rem;
+}
+
+.sidebar-section {
+    margin-bottom: 1.5rem;
+}
+
+.sidebar-section:last-child {
+    margin-bottom: 0;
+}
+
+.sidebar-section h3 {
+    margin-bottom: 1rem;
+    color: #00d4aa;
+    font-size: 1.1rem;
+    border-bottom: 2px solid #00d4aa;
+    padding-bottom: 0.5rem;
+}
+
+/* Styles for post lists in the sidebar */
+.sidebar-section ul.post-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-section ul.post-list li {
+    margin-bottom: 0.5rem;
+}
+
+.sidebar-section ul.post-list a {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+}
+
+/* Keep other sidebar lists without bullets */
+.sidebar-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-section li {
+    margin-bottom: 0.5rem;
+}
+
+.sidebar-section a {
+    text-decoration: none;
+    color: #4a9eff;
+    display: block;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    margin: 0.2rem 0;
+    transition: all 0.2s ease;
+    border-left: 2px solid transparent;
+}
+
+.sidebar-section a:hover {
+    color: #ffffff;
+    background-color: rgba(74, 158, 255, 0.1);
+    padding-left: 1.2rem;
+    border-left: 2px solid #4a9eff;
+}
+
+.sidebar-section a:focus {
+    outline: 2px solid #4a9eff;
+    outline-offset: 2px;
+    background-color: rgba(74, 158, 255, 0.1);
+}
+
+.current-post {
+    font-weight: bold;
+    color: #00d4aa !important;
+    background-color: rgba(0, 212, 170, 0.1);
+    padding: 0.4rem 0.8rem !important;
+    border-radius: 4px;
+    border-left: 3px solid #00d4aa;
+}
+
+.sidebar-section ul.post-list li > div {
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-section ul.post-list li small {
+    color: #888;
+    font-size: 0.8rem;
+    margin-top: 0.2rem;
+    padding-left: 0.8rem; /* Match title indentation */
+}
+
+/* Main Content Styles */
+#main_content {
+    flex: 1;
+    padding: 20px;
+}
+
+/* ===== TABLE OF CONTENTS STYLES ===== */
+
+#toc ul {
+    list-style: none;
+    padding-left: 1em;
+}
+
+#toc > ul {
+    padding-left: 0;
+}
+
+#toc a {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: #4a9eff;
+}
+
+/* Different heading levels in TOC */
+#toc .toc-h1 {
+    font-weight: bold;
+    color: #e0e0e0;
+    font-size: 1rem;
+}
+
+#toc .toc-h2 {
+    color: #4a9eff;
+    font-size: 0.9rem;
+}
+
+#toc .toc-h3 {
+    color: #888;
+    font-size: 0.85rem;
+}
+
+#toc .toc-h4 {
+    color: #666;
+    font-size: 0.8rem;
+}
+
+/* Active TOC link */
+#toc a.active {
+    color: #00d4aa;
+    font-weight: bold;
+    background-color: rgba(0, 212, 170, 0.1);
+    padding: 0.2rem 0.5rem;
+    border-radius: 3px;
+    border-left: 2px solid #00d4aa;
+}
+
+
+/* ===== SMOOTH SCROLLING AND TARGETING ===== */
+
+/* Smooth scrolling for anchor links */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Highlight targeted heading */
+:target {
+    background-color: #fff3cd;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: background-color 2s ease-out;
+    border-left: 4px solid #ffc107;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+
+.sidebar-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* For Laptops */
+@media (max-width: 1200px) {
+    .sidebar {
+        width: 250px;
+    }
+    .blog-card {
+        flex-basis: calc(50% - 40px);
+    }
+}
+
+/* For Tablets */
+@media (max-width: 992px) {
+    .body-container {
+        flex-direction: column;
+    }
+    .sidebar {
+        width: 100%;
+        position: static;
+        margin-bottom: 20px;
+    }
+    .blog-card {
+        flex-basis: calc(50% - 40px);
+    }
+}
+
+/* For Mobile Phones */
+@media (max-width: 768px) {
+    .sidebar-toggle {
+        display: block;
+    }
+
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: -280px;
+        height: 100%;
+        z-index: 1000;
+        transition: left 0.3s ease;
+    }
+
+    .sidebar.open {
+        left: 0;
+    }
+
+    header .header-container {
+        flex-wrap: wrap;
+    }
+
+    header .header-left {
+        flex-basis: 100%;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    header .about-card {
+        margin-bottom: 20px;
+        max-width: 100%;
+    }
+
+    .blog-card {
+        flex-basis: 100%;
+        margin: 10px 0;
+    }
+}
+
+/* Very small screens */
+@media (max-width: 480px) {
+    .sidebar {
+        padding: 1rem;
+    }
+    
+    .sidebar-section h3 {
+        font-size: 1rem;
+    }
+}
+
+/* Print styles - hide sidebar when printing */
+@media print {
+    .sidebar {
+        display: none !important;
+    }
+    
+    #main_content {
+        width: 100% !important;
+        max-width: none !important;
+    }
+}
