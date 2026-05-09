@@ -6,6 +6,8 @@ image: "/assets/prompt-engineering/header.png"
 excerpt: "This series (WIP) is a guide to effective prompting!"
 author: Satish Yenumula
 tags: [AI, Prompting, Guide]
+series: "Prompt Engineering"
+series_order: 1
 ---
 
 There are >1500 papers in arXiv about prompt engineering. Every new model that comes out or if someone finds a better way to write a prompt and achieve better results, it is given a name and called a certain way of prompting. This has led to various techniques such as few-shot learning, chain of trees, self-criticism, planning strategies and all sorts of other names that are difficult to keep track of and end up being counter productive. 

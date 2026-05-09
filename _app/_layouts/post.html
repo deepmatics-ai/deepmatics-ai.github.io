@@ -2,10 +2,47 @@
 layout: default
 ---
 
-<small>{{ page.date | date: "%-d %B %Y" }}</small>
+{% assign words = content | number_of_words %}
+{% assign reading_time = words | divided_by: 200 %}
+{% if reading_time == 0 %}{% assign reading_time = 1 %}{% endif %}
+
+<div class="post-meta-header">
+    <small>{{ page.date | date: "%-d %B %Y" }}</small>
+    <span class="reading-time">{{ reading_time }} min read</span>
+</div>
 <h1>{{ page.title }}</h1>
 
 <p class="view">by {{ page.author | default: site.author }}</p>
+
+{% if page.series %}
+{% assign series_posts = site.articles | where: "series", page.series | sort: "series_order" %}
+{% if series_posts.size > 1 %}
+{% assign current_index = nil %}
+{% for sp in series_posts %}
+  {% if sp.url == page.url %}{% assign current_index = forloop.index0 %}{% endif %}
+{% endfor %}
+<div class="series-nav-box">
+    <div class="series-nav-header">
+        <span class="series-label">Series: {{ page.series }}</span>
+        <span class="series-progress">Part {{ current_index | plus: 1 }} of {{ series_posts.size }}</span>
+    </div>
+    <div class="series-nav-links">
+        {% if current_index > 0 %}
+        {% assign prev_index = current_index | minus: 1 %}
+        <a href="{{ series_posts[prev_index].url | relative_url }}" class="series-prev">&larr; {{ series_posts[prev_index].title | truncatewords: 6 }}</a>
+        {% else %}
+        <span class="series-prev disabled"></span>
+        {% endif %}
+        {% assign next_index = current_index | plus: 1 %}
+        {% if next_index < series_posts.size %}
+        <a href="{{ series_posts[next_index].url | relative_url }}" class="series-next">{{ series_posts[next_index].title | truncatewords: 6 }} &rarr;</a>
+        {% else %}
+        <span class="series-next disabled"></span>
+        {% endif %}
+    </div>
+</div>
+{% endif %}
+{% endif %}
 
 {{content}}
 

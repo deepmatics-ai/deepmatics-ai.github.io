@@ -6,6 +6,8 @@ image: "/assets/rag-series/rag-banner.png"
 excerpt: "For a good retriever, the first principles like indexing and fetching remain constant, however building an enterprise grade vector space introduces unique set of challenges that don't show up in your prototypes"
 author: Satish Yenumula
 tags: [AI, RAG, Retriever]
+series: "RAG"
+series_order: 1
 ---
 
 ## The Prototype Paradox

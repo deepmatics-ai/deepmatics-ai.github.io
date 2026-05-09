@@ -41,8 +41,11 @@ title: Deepmatics
     <div class="blog-card" data-tags="{{ post.tags | join: ',' }}" data-date="{{ post.date | date: '%Y-%m-%d' }}">
         <img src="{{ post.image | relative_url }}" alt="{{ post.title }}" class="card-image" />
         <div class="card-content">
+            {% assign words = post.content | number_of_words %}
+            {% assign reading_time = words | divided_by: 200 %}
+            {% if reading_time == 0 %}{% assign reading_time = 1 %}{% endif %}
             <div class="card-meta">
-                <span class="card-date">{{ post.date | date: "%b %d, %Y" }}</span>
+                <span class="card-date">{{ post.date | date: "%b %d, %Y" }} &middot; {{ reading_time }} min read</span>
                 <div class="card-tags">
                     {% for tag in post.tags %}
                     <span class="card-tag">{{ tag }}</span>
