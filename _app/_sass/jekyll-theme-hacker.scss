@@ -39,6 +39,7 @@ $container-max-width: 1200px;
     --body-bg-image: url("../images/bkg.png");
     --target-bg: #fff3cd;
     --target-border: #ffc107;
+    --code-inline-color: #aa759f;
 }
 
 [data-theme="light"] {
@@ -71,6 +72,7 @@ $container-max-width: 1200px;
     --body-bg-image: none;
     --target-bg: #fff8e1;
     --target-border: #ffc107;
+    --code-inline-color: #6b3a7d;
 }
 
 @mixin media-max-width($max-width) {
@@ -300,7 +302,7 @@ code.highlighter-rouge {
   border: 1px solid var(--code-border);
   padding: 0px 3px;
   margin: 0px -3px;
-  color: #aa759f;
+  color: var(--code-inline-color);
   border-radius: 2px;
 }
 

@@ -229,6 +229,10 @@
     border-radius: 8px;
 }
 
+.blog-posts-container.list-view .blog-card.hidden {
+    display: none;
+}
+
 .blog-posts-container.list-view .blog-card:hover {
     transform: translateX(4px);
 }
@@ -809,6 +813,32 @@ html {
         background: var(--code-bg);
         border: 1px solid var(--code-border);
         border-radius: 4px;
+        color: #24292e;
+
+        .w { color: #24292e; }
+        .err { color: #cb2431; background-color: #ffeef0; }
+        .c, .cd, .cm, .c1, .cs { color: #6a737d; }
+        .cp { color: #e36209; }
+        .o, .ow { color: #d73a49; }
+        .p, .pi { color: #24292e; }
+        .gi { color: #22863a; }
+        .gd { color: #cb2431; }
+        .gh { color: #005cc5; font-weight: bold; }
+        .k, .kn, .kp, .kr, .kv { color: #d73a49; }
+        .kc, .kt, .kd { color: #d73a49; }
+        .s, .sb, .sc, .sd, .s2, .sh, .sx, .s1 { color: #032f62; }
+        .sr { color: #032f62; }
+        .si, .se { color: #e36209; }
+        .nt, .nn, .nc, .no { color: #6f42c1; }
+        .na { color: #005cc5; }
+        .m, .mf, .mh, .mi, .il, .mo, .mb, .mx { color: #005cc5; }
+        .ss { color: #032f62; }
+    }
+
+    pre {
+        background: var(--code-bg);
+        border: 1px solid var(--code-border);
+        color: #24292e;
     }
 
     header h1 {

@@ -60,8 +60,25 @@ The homepage includes an interactive toolbar for browsing posts:
 *   **Tag Filters**: Clickable tag pills auto-generated from all article tags. Click a tag to show only matching posts.
 *   **View Toggle**: Switch between a card grid view and a compact list view. Your preference is saved in the browser.
 *   **Sort**: Toggle between newest-first and oldest-first ordering.
+*   **Reading Time**: Each post card displays an estimated reading time (calculated at 200 words per minute).
 
 Tags defined in a post's front matter (`tags: [AI, ML, Topic]`) are used both for filtering on the homepage and displayed on each post card.
+
+## Content & Reading Experience
+
+### Series Navigation
+
+Posts can be grouped into a series using front matter:
+
+```yaml
+---
+series: "RAG"
+series_order: 1
+---
+```
+
+When two or more posts share the same `series` value, a navigation box appears at the top of each post showing the series name, current position (e.g., "Part 1 of 3"), and previous/next links.
+
 
 ## Project Structure
 
