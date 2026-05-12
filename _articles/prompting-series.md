@@ -5,7 +5,7 @@ date: 2024-11-20
 image: "/assets/prompt-engineering/header.png"
 excerpt: "This series (WIP) is a guide to effective prompting!"
 author: Satish Yenumula
-tags: [AI, Prompting, Guide]
+tags: [Prompting]
 series: "Prompt Engineering"
 series_order: 1
 ---
