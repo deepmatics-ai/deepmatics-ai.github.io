@@ -9,6 +9,72 @@ $blockquote-color: default_colors.$silver-chalice !default;
 $blockquote-border: default_colors.$dove-grey !default;
 $container-max-width: 1200px;
 
+:root {
+    --bg-primary: #151515;
+    --bg-secondary: #1a1a1a;
+    --bg-card: #1e1e1e;
+    --bg-input: #222;
+    --bg-elevated: #2a2a2a;
+    --text-primary: #eaeaea;
+    --text-secondary: #ccc;
+    --text-muted: #999;
+    --text-dimmed: #888;
+    --text-faint: #777;
+    --text-subtle: #666;
+    --border-primary: #333;
+    --border-secondary: #444;
+    --border-tertiary: #555;
+    --accent-blue: #4a9eff;
+    --accent-teal: #00d4aa;
+    --accent-green: #b5e853;
+    --header-bg: rgba(0, 0, 0, 0.1);
+    --shadow-color: rgba(0, 0, 0, 0.4);
+    --tag-bg: rgba(74, 158, 255, 0.15);
+    --toc-active-bg: rgba(0, 212, 170, 0.1);
+    --hover-bg: rgba(74, 158, 255, 0.1);
+    --code-bg: rgba(0, 0, 0, 0.9);
+    --code-border: rgba(255, 255, 255, 0.15);
+    --link-color: #63c0f5;
+    --link-glow: rgba(104, 182, 255, 0.5);
+    --body-bg-image: url("../images/bkg.png");
+    --target-bg: #fff3cd;
+    --target-border: #ffc107;
+    --code-inline-color: #aa759f;
+}
+
+[data-theme="light"] {
+    --bg-primary: #f5f5f5;
+    --bg-secondary: #ffffff;
+    --bg-card: #ffffff;
+    --bg-input: #f0f0f0;
+    --bg-elevated: #e8e8e8;
+    --text-primary: #1a1a1a;
+    --text-secondary: #333;
+    --text-muted: #555;
+    --text-dimmed: #666;
+    --text-faint: #777;
+    --text-subtle: #999;
+    --border-primary: #ddd;
+    --border-secondary: #ccc;
+    --border-tertiary: #bbb;
+    --accent-blue: #2b7de9;
+    --accent-teal: #00a884;
+    --accent-green: #4a8c2a;
+    --header-bg: rgba(0, 0, 0, 0.04);
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --tag-bg: rgba(43, 125, 233, 0.1);
+    --toc-active-bg: rgba(0, 168, 132, 0.08);
+    --hover-bg: rgba(43, 125, 233, 0.06);
+    --code-bg: #f6f8fa;
+    --code-border: #d0d7de;
+    --link-color: #2b7de9;
+    --link-glow: none;
+    --body-bg-image: none;
+    --target-bg: #fff8e1;
+    --target-border: #ffc107;
+    --code-inline-color: #6b3a7d;
+}
+
 @mixin media-max-width($max-width) {
   @media (max-width: $max-width) {
       @content;
@@ -55,8 +121,8 @@ $container-max-width: 1200px;
 body {
   margin: 0;
   padding: 0;
-  background: $body-background url("../images/bkg.png") 0 0;
-  color: $body-foreground;
+  background: var(--bg-primary) var(--body-bg-image) 0 0;
+  color: var(--text-primary);
   font-size: 16px;
   line-height: 1.5;
   font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
@@ -96,9 +162,9 @@ li {
 */
 
 header {
-  background: rgba(0, 0, 0, 0.1);
+  background: var(--header-bg);
   width: 100%;
-  border-bottom: 1px dashed default_colors.$conifer; //header;
+  border-bottom: 1px dashed var(--accent-green);
   padding: 20px 0;
   margin: 0 0 40px 0;
 }
@@ -116,7 +182,7 @@ header h1 {
   margin: 0 0 0 -40px;
   font-weight: bold;
   font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
-  color: default_colors.$conifer;//$header;
+  color: var(--accent-green);
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1),
                0 0 5px rgba(181, 232, 83, 0.1),
                0 0 10px rgba(181, 232, 83, 0.1);
@@ -136,7 +202,7 @@ header h1:before {
 header h2 {
   font-size: 18px;
   font-weight: 300;
-  color: #666;
+  color: var(--text-subtle);
 }
 
 #downloads .btn {
@@ -168,7 +234,7 @@ section img {
 h1, h2, h3, h4, h5, h6 {
   font-weight: normal;
   font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
-  color: $header;
+  color: var(--accent-green);
   letter-spacing: -0.03em;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1),
                0 0 5px rgba(181, 232, 83, 0.1),
@@ -200,7 +266,7 @@ h1, h2, h3, h4, h5, h6 {
 #main_content h6 {
   font-size: 12px;
   text-transform: uppercase;
-  color: #999;
+  color: var(--text-muted);
   margin: 0 0 5px 0;
 }
 
@@ -214,17 +280,17 @@ ul li {
 }
 
 blockquote {
-  color: $blockquote-color;
+  color: var(--text-muted);
   padding-left: 10px;
-  border-left: 1px dotted $blockquote-border;
+  border-left: 1px dotted var(--border-secondary);
 }
 
 pre {
-  background: rgba(0, 0, 0, 0.9);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: var(--code-bg);
+  border: 1px solid var(--code-border);
   padding: 10px;
   font-size: 16px;
-  color: #b5e853;
+  color: var(--accent-green);
   border-radius: 2px;
   word-wrap: normal;
   overflow: auto;
@@ -232,11 +298,11 @@ pre {
 }
 
 code.highlighter-rouge {
-  background: rgba(0,0,0,0.9);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: var(--code-bg);
+  border: 1px solid var(--code-border);
   padding: 0px 3px;
   margin: 0px -3px;
-  color: #aa759f;
+  color: var(--code-inline-color);
   border-radius: 2px;
 }
 
@@ -247,7 +313,7 @@ table {
 
 th {
   text-align: left;
-  border-bottom: 1px dashed #b5e853;
+  border-bottom: 1px dashed var(--accent-green);
   padding: 5px 10px;
 }
 
@@ -258,8 +324,8 @@ td {
 hr {
   height: 0;
   border: 0;
-  border-bottom: 1px dashed #b5e853;
-  color: #b5e853;
+  border-bottom: 1px dashed var(--accent-green);
+  color: var(--accent-green);
 }
 
 /* Buttons
@@ -304,8 +370,8 @@ hr {
 */
 
 a {
-  color: #63c0f5;
-  text-shadow: 0 0 5px rgba(104, 182, 255, 0.5);
+  color: var(--link-color);
+  text-shadow: 0 0 5px var(--link-glow);
 }
 
 /* Clearfix */

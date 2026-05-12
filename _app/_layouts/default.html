@@ -8,6 +8,14 @@
     
     {% include head-custom.html %}
     {% seo %}
+    <script>
+        (function() {
+            var saved = localStorage.getItem('theme');
+            var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            var theme = saved || (prefersDark ? 'dark' : 'light');
+            if (theme === 'light') document.documentElement.setAttribute('data-theme', 'light');
+        })();
+    </script>
 </head>
 
 <body>
@@ -24,6 +32,9 @@
                     <h2>{{ site.description | default: site.github.project_tagline }}</h2>
                 </div>
             </div>
+            <button class="theme-toggle" id="theme-toggle" title="Toggle theme" aria-label="Toggle theme">
+                <span class="theme-icon" id="theme-icon"></span>
+            </button>
             <div class="about-card">
                 <div class="about-card-content">
                     <a href="{{ "/pages/about.html" | relative_url }}" class="about-card-link">About</a>
@@ -213,6 +224,58 @@
         sidebarToggle.addEventListener('click', () => {
             sidebar.classList.toggle('open');
         });
+
+        // Copy-to-clipboard for code blocks
+        document.querySelectorAll('div.highlight, pre:not(.highlight pre)').forEach(function(block) {
+            if (block.closest('.code-block-wrapper')) return;
+            var wrapper = document.createElement('div');
+            wrapper.className = 'code-block-wrapper';
+            block.parentNode.insertBefore(wrapper, block);
+            wrapper.appendChild(block);
+
+            var btn = document.createElement('button');
+            btn.className = 'copy-btn';
+            btn.textContent = 'Copy';
+            btn.addEventListener('click', function() {
+                var code = block.querySelector('code') || block;
+                navigator.clipboard.writeText(code.textContent).then(function() {
+                    btn.textContent = 'Copied!';
+                    btn.classList.add('copied');
+                    setTimeout(function() {
+                        btn.textContent = 'Copy';
+                        btn.classList.remove('copied');
+                    }, 2000);
+                });
+            });
+            wrapper.appendChild(btn);
+        });
+
+        // Theme toggle
+        (function() {
+            var toggle = document.getElementById('theme-toggle');
+            var icon = document.getElementById('theme-icon');
+
+            function getTheme() {
+                return document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+            }
+
+            function updateIcon() {
+                icon.textContent = getTheme() === 'dark' ? '☾' : '☀';
+            }
+
+            updateIcon();
+
+            toggle.addEventListener('click', function() {
+                var next = getTheme() === 'dark' ? 'light' : 'dark';
+                if (next === 'light') {
+                    document.documentElement.setAttribute('data-theme', 'light');
+                } else {
+                    document.documentElement.removeAttribute('data-theme');
+                }
+                localStorage.setItem('theme', next);
+                updateIcon();
+            });
+        })();
     </script>
 </body>
 </html>
