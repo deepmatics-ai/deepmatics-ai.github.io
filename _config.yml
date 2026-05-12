@@ -1,7 +1,7 @@
 title: Deepmatics!
 description: Exploring AI and a few other interests.
 url: "https://deepmatics-ai.github.io"
-baseurl: "/blog"
+baseurl: ""
 plugins:
   - jekyll-seo-tag
 
