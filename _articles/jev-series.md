@@ -46,9 +46,7 @@ Jev could work as a co-processor, a fast orchestration layer in modern AI agent 
 * **The skeptics have a point.** Some Reddit commenters noted that zero-shot classifier models already do something similar. The open question is whether Jev's speed, cost and calibration justify switching.  
   
 **Where I land:**  
-Jev looks like a useful component, not a replacement for LLMs. Instead of paying reasoning-model prices for every small decision, an agent stack could save the expensive models for the hard parts. Whether Jev actually delivers is an empirical question, and I don't have that answer yet.  
-  
-**Next step:** I'm putting Jev through some benchmarks, looking at accuracy, latency and cost against LLMs on tasks like routing and intent classification. I'll share the numbers in a follow-up post.  
+Jev looks like a useful component, not a replacement for LLMs. Instead of paying reasoning-model prices for every small decision, an agent stack could save the expensive models for the hard parts. Whether Jev actually delivers is an empirical question, and I don't have that answer yet. 
   
 ### References  
 [1] TypeSafe AI, "Introducing System One Models & Jev": typesafe.ai/blog/introducing-system-one-models-and-jev <br>
